@@ -1,6 +1,7 @@
 //This program is to display the welcome message to Employee wage computation program.
 //Use Case-1 is to check whether the Employee is present or not.
 //Use Case-2 is to calculate the daily Employee wage.
+//Use Case-3 is to show part-time Employee's wage.
 
 package com.employeewage.computation;
 
@@ -18,22 +19,34 @@ public class EmployeeWageComputation {
         System.out.println();
 
         //Declaring the variables.
-        double isPresent = 1;
-        double randomCheck = (double) Math.floor((Math.random() * 10) % 2);
-        int fullDayHour = 8;
+        double isPartTime = 1;
+        double isFullTime = 2;
+        double randomCheck = (double) Math.floor((Math.random() * 10) % 3);
+        int empHour;
         int wagePerHour = 20;
         int salary = 0;
 
-        //Checking if the Employee is present, then calculating his/her daily wage.
-        if(randomCheck == isPresent)
+        //Adding part-time Employee and his/her wage.
+        if (randomCheck == isFullTime)
         {
-            System.out.println("Employee is present");
-            salary = fullDayHour * wagePerHour;
+            int fullTimeHour = 8;
+            empHour = fullTimeHour;
+            salary = empHour * wagePerHour;
+            System.out.println("Employee is working full time.");
+            System.out.println("Salary is: $"+salary);
+        }
+        else if (randomCheck == isPartTime)
+        {
+            int partTimeHour = 4;
+            empHour = partTimeHour;
+            salary = empHour * wagePerHour;
+            System.out.println("Employee is working part time.");
             System.out.println("Salary is: $"+salary);
         }
         else
         {
-            System.out.println("Employee is absent");
+            empHour=0;
+            System.out.println("Employee is absent.");
             System.out.println("Salary is: $"+salary);
         }
 
