@@ -10,6 +10,7 @@
 //Use Case-9 is to create EmployeeWageBuilder for each company.
 //Use Case-10 is to manage Employee Wage of multiple companies by means of array concept.
 //Use Case-11 is to manage Employee Wage of multiple companies using Interface approach.
+//Use Case-12 is to manage Employee Wage of multiple companies by means of Array List concept
 
 package com.employeewage.computation;
 

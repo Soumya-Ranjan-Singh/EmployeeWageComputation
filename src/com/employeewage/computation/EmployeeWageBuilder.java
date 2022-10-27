@@ -2,31 +2,34 @@
 
 package com.employeewage.computation;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class EmployeeWageBuilder implements ComputeEmployeeWage {
 
-    private int numOfCompany = 0;
-    private CompanyEmpWage[] companyEmpWageArray;
+    private List<CompanyEmpWage> companyEmpWageList;
 
 
     //Define Default Constructor
     public EmployeeWageBuilder() {
-        companyEmpWageArray = new CompanyEmpWage[5];
+        companyEmpWageList = new ArrayList<CompanyEmpWage>();
     }
 
     //Adding company to an array
     public void addCompanyEmployeeWage(String companyName, int empWagePerHour, int maxWorkingHours, int maxWorkingDays)
     {
-        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(companyName, empWagePerHour, maxWorkingHours, maxWorkingDays);
-        numOfCompany++;
+        CompanyEmpWage companyEmpWage = new CompanyEmpWage(companyName, empWagePerHour, maxWorkingHours, maxWorkingDays);
+        companyEmpWageList.add(companyEmpWage);
     }
 
     //Computing employee wage and printing it
     public void computeEmpWage()
     {
-        for (int i = 0; i < numOfCompany; i++)
+        for (CompanyEmpWage companyEmpWage : companyEmpWageList)
         {
-            companyEmpWageArray[i].setMonthlySalary(this.calculateTotalWage(companyEmpWageArray[i]));
-            System.out.println(companyEmpWageArray[i]);
+            companyEmpWage.setMonthlySalary(this.calculateTotalWage(companyEmpWage));
+            System.out.println(companyEmpWage);
         }
     }
 
