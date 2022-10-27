@@ -8,6 +8,7 @@
 //Use Case-7 is to refactor the above use case to write class method to compute Employee Wage.
 //Use Case-8 is to compute Employee Wage for multiple companies.
 //Use Case-9 is to create EmployeeWageBuilder for each company.
+//Use Case-10 is to manage Employee Wage of multiple companies.
 
 package com.employeewage.computation;
 
@@ -26,18 +27,12 @@ public class EmployeeWageComputation {
 
         //Calculating employee wage for different companies.
         System.out.println("Calculating the salary for different companies : ............");
-        EmployeeWageBuilder company1 = new EmployeeWageBuilder("Google",40,100,20);
-        company1.calculateTotalWage();
-        company1.print();
-        EmployeeWageBuilder company2 = new EmployeeWageBuilder("Microsoft",20,150,18);
-        company2.calculateTotalWage();
-        company2.print();
-        EmployeeWageBuilder company3 = new EmployeeWageBuilder("Amazon",60,180,22);
-        company3.calculateTotalWage();
-        company3.print();
-        EmployeeWageBuilder company4 = new EmployeeWageBuilder("Apple",30,190,26);
-        company4.calculateTotalWage();
-        company4.print();
+        EmployeeWageBuilder employeeWageBuilder = new EmployeeWageBuilder();
+        employeeWageBuilder.addCompanyEmployeeWage("Google",40,100,20);
+        employeeWageBuilder.addCompanyEmployeeWage("Microsoft",20,150,18);
+        employeeWageBuilder.addCompanyEmployeeWage("Amazon",60,180,22);
+        employeeWageBuilder.addCompanyEmployeeWage("Apple",30,190,26);
+        employeeWageBuilder.computeEmpWage();
 
     }
 

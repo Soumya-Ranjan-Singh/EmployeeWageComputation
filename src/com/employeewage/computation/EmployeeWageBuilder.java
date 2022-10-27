@@ -8,46 +8,58 @@ public class EmployeeWageBuilder {
     private final static int isPartTimeHour = 4;
     private final static int isFullTimeHour = 8;
 
-    //Declaring the object referred variables
-    private final String companyName;
-    private final int empWagePerHour;
-    private final int maxWorkingHours;
-    private final int maxWorkingDays;
+    private int numOfCompany = 0;
+    private CompanyEmpWage[] companyEmpWageArray;
 
-    //Declaring some variables
-    int randomCheck;
-    int salary;
-    int monthlySalary;
-    int totalWorkingHours;
-    int totalWorkingDays;
 
-    //Define Parameterised Constructor
-    public EmployeeWageBuilder(String companyName, int empWagePerHour, int workingHours, int workingDays) {
-        this.companyName = companyName;
-        this.empWagePerHour = empWagePerHour;
-        this.maxWorkingHours = workingHours;
-        this.maxWorkingDays = workingDays;
+    //Define Default Constructor
+    public EmployeeWageBuilder() {
+        companyEmpWageArray = new CompanyEmpWage[5];
     }
 
-    public void calculateTotalWage()
+    //Adding company to an array
+    public void addCompanyEmployeeWage(String companyName, int empWagePerHour, int maxWorkingHours, int maxWorkingDays)
     {
+        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(companyName, empWagePerHour, maxWorkingHours, maxWorkingDays);
+        numOfCompany++;
+    }
+
+    //Computing employee wage and printing it
+    public void computeEmpWage()
+    {
+        for (int i = 0; i < numOfCompany; i++)
+        {
+            companyEmpWageArray[i].setMonthlySalary(this.calculateTotalWage(companyEmpWageArray[i]));
+            System.out.println(companyEmpWageArray[i]);
+        }
+    }
+
+    //Calculating total wage
+    public int calculateTotalWage(CompanyEmpWage companyEmpWage)
+    {
+        //Declaring variables
+        int randomCheck;
+        int salary = 0;
+        int monthlySalary = 0;
+        int totalWorkingHours = 0;
+        int totalWorkingDays = 0;
         System.out.println();
-        System.out.println("For Company : "+companyName+"...................");
-        while (totalWorkingHours < maxWorkingHours && totalWorkingDays < maxWorkingDays) {
+        System.out.println("For Company : "+companyEmpWage.companyName+"...................");
+        while (totalWorkingHours < companyEmpWage.maxWorkingHours && totalWorkingDays < companyEmpWage.maxWorkingDays) {
             totalWorkingDays++;
             randomCheck = (int) Math.floor((Math.random() * 10) % 3);
             switch (randomCheck) {
                 case 1:
 
                     System.out.println("Employee is working full-time");
-                    salary = empWagePerHour * isFullTimeHour;
+                    salary = companyEmpWage.empWagePerHour * isFullTimeHour;
                     totalWorkingHours = totalWorkingHours + isFullTimeHour;
                     break;
 
                 case 2:
 
                     System.out.println("Employee is working part-time");
-                    salary = empWagePerHour * isPartTimeHour;
+                    salary = companyEmpWage.empWagePerHour * isPartTimeHour;
                     totalWorkingHours = totalWorkingHours + isPartTimeHour;
                     break;
 
@@ -65,10 +77,7 @@ public class EmployeeWageBuilder {
             monthlySalary = monthlySalary + salary;
 
         }
+        return monthlySalary;
     }
 
-    public void print() {
-        System.out.println();
-        System.out.println("Total Wage of the Employee for Company : "+companyName+" is "+monthlySalary);
-    }
 }
