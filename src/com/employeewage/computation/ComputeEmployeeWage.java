@@ -11,5 +11,6 @@ public interface ComputeEmployeeWage {
     //Some methods
     void addCompanyEmployeeWage(String companyName, int empWagePerHour, int maxWorkingHours, int maxWorkingDays);
     void computeEmpWage();
+    int getTotalWage(String company);
 
 }
