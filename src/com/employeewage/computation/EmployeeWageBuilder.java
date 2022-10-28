@@ -4,12 +4,13 @@ package com.employeewage.computation;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeeWageBuilder implements ComputeEmployeeWage {
 
     private List<CompanyEmpWage> companyEmpWageList;
-
 
     //Define Default Constructor
     public EmployeeWageBuilder() {
@@ -50,28 +51,30 @@ public class EmployeeWageBuilder implements ComputeEmployeeWage {
             switch (randomCheck) {
                 case 1:
 
-                    System.out.println("Employee is working full-time");
+                    System.out.println("Day : "+totalWorkingDays+"  Employee is working full-time");
                     salary = companyEmpWage.empWagePerHour * isFullTimeHour;
                     totalWorkingHours = totalWorkingHours + isFullTimeHour;
                     break;
 
                 case 2:
 
-                    System.out.println("Employee is working part-time");
+                    System.out.println("Day : "+totalWorkingDays+"  Employee is working part-time");
                     salary = companyEmpWage.empWagePerHour * isPartTimeHour;
                     totalWorkingHours = totalWorkingHours + isPartTimeHour;
                     break;
 
                 default:
 
-                    System.out.println("Employee is absent");
+                    System.out.println("Day : "+totalWorkingDays+"  Employee is absent");
                     salary = 0;
                     break;
             }
 
-            System.out.print("Day: "+totalWorkingDays+"\t random : "+randomCheck+"\t");
+            //System.out.print("Day: "+totalWorkingDays+"\t random : "+randomCheck+"\t");
+            companyEmpWage.dailyWage.put(totalWorkingDays,salary);
+            System.out.println(companyEmpWage.dailyWage);
             System.out.print("Working Hours: "+totalWorkingHours+"\t");
-            System.out.print("Salary is: "+salary+"\t");
+            //System.out.print("Salary is: "+salary+"\t");
             System.out.println();
             monthlySalary = monthlySalary + salary;
 
